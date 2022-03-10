@@ -1,9 +1,10 @@
-const parzi = require("aoi.js")
-var fs = require('fs')
-const bot = new parzi.Bot({
-    token: process.env.token,
-    prefix:"."
-})
+const aoijs = require("aoi.js")
+const bot = new aoijs.Bot({
+token: process.env.token, 
+prefix: "$getServerVar[prefix]", 
+intents: "all" 
+}) 
+
 bot.onMessage({guildOnly: false})
 
 ////////// STATUS \\\\\\\\\\
@@ -23,8 +24,8 @@ bot.variables({
 bot.command({
   name:"$alwaysExecute",
   code:`
-  $channelSendMessage[$getServerVar[logkanalı];{author:Yeni bir öneri!:$authorAvatar}{field:Öneriyi yapan:<@$authorID> - ( \`$authorID\` )}{field:Yaptığı öneri:\`\`\`js
-$message\`\`\`}{footer:Developed By ParzivâL:$userAvatar[771311848993587210]}{color:RANDOM}{thumbnail:$authorAvatar}]
+  $channelSendMessage[$getServerVar[logkanalı];{newEmbed:{author:Yeni bir öneri!:$authorAvatar}{field:Öneriyi yapan:<@$authorID> - ( \`$authorID\` )}{field:Yaptığı öneri:\`\`\`js
+$message\`\`\`}{footer:Developed By ParzivâL:$userAvatar[771311848993587210]}{color:RANDOM}{thumbnail:$authorAvatar}}]
 ✅ <@$authorID>, Öneri/İstek/Şikayet'iniz başarıyla iletildi.
   $onlyIf[$message[4]!=;❎ <@$authorID>, En az 4 kelime yazmalısın.]
   $onlyIf[$guildID==;]
